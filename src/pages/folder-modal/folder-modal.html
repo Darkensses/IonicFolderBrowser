@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>
+      {{curFold[0]}}
+    </ion-title>
+
+    <ion-buttons end>
+    	<button ion-button (click)="closeModal()">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <button ion-item *ngIf="parent.length > 0" (click)="clickParent()">
+      <ion-icon name="arrow-dropup"></ion-icon> Up to {{parent[0] == '' ? 'Root' : parent[0]}}
+    </button>
+    <ion-item-sliding *ngFor="let folder of folders">
+      <button ion-item  (click)="clickFolder((folder))">
+        <ion-icon ios="ios-folder" md="md-folder"></ion-icon>
+        {{folder}}
+      </button>  
+      <ion-item-options side="right">
+        <button ion-button color="secondary" (click)="selectFolder(folder)">
+          <ion-icon name="checkmark"></ion-icon>            
+          Select
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>	
+  </ion-list>
+</ion-content>
